@@ -1,12 +1,17 @@
 // import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import checkIcon from './check-solid.svg'
 
 import './ProgressBar.style';
 
 export class ProgressBar extends PureComponent {
     static propTypes = {
-        // TODO: implement prop-types
+        color: PropTypes.string,
+        numberOfStages: PropTypes.number,
+        titles: PropTypes.array,
+        checkoutSteps: PropTypes.array,
+        checkoutStep: PropTypes.string,
     };
 
     constructor(props) {
@@ -21,14 +26,18 @@ export class ProgressBar extends PureComponent {
 
     componentDidMount() {
         let array = [];
-        for(let i = 1; i <= this.props.numberOfStages; i++) {
-            array.push(i);
-        }
-
+        
         this.handleChangeActiveParts();
 
         if(this.props.numberOfStages) {
             this.handleChangeNumberOfStages(this.props.numberOfStages);
+            for(let i = 1; i <= this.props.numberOfStages; i++) {
+                array.push(i);
+            }
+        } else {
+            for(let i = 1; i <= this.state.numberOfStages; i++) {
+                array.push(i);
+            }
         }
 
         if(this.props.titles) {
@@ -96,13 +105,18 @@ export class ProgressBar extends PureComponent {
 
     renderStage(positionIndex, title) {
         const {activeParts} = this.state;
+        const {color} = this.props;
         if(activeParts >= positionIndex) {
             return(
                 <React.Fragment key={positionIndex}>
                     <div block="ProgressBar" elem={positionIndex === 1 ? "ProgressLine" : "ProgressLineCenter"}>
-                        <div block="ProgressBar" elem={positionIndex === 1 ? "ProgressLineActive" : "ProgressLineCenterActive"}></div>
+                        <div
+                            block="ProgressBar" 
+                            elem={positionIndex === 1 ? "ProgressLineActive" : "ProgressLineCenterActive"}
+                            style={color ? {background: color} : {}}
+                        ></div>
                     </div>
-                    <div block="ProgressBar" elem="ProgressStageActive">
+                    <div block="ProgressBar" elem="ProgressStageActive" style={color ? {background: color} : {background: "#a82222"}}>
                         {this.renderActiveStagePosition(activeParts - positionIndex >= 1, positionIndex)}
                         <div block="ProgressBar" elem="TitleProgressStageActive">
                             <p>{title}</p>

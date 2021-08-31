@@ -27,7 +27,6 @@ export class Checkout extends SourceCheckout {
                 <ProgressBar
                     checkoutSteps={checkoutSteps}
                     checkoutStep={checkoutStep}
-                    numberOfStages={2}
                 />
                 <SourceContentWrapper
                   wrapperMix={ { block: 'Checkout', elem: 'Wrapper' } }
