@@ -1,0 +1,138 @@
+.ProgressBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 32px 0 48px;
+    margin: 0;
+    background: #f3f3f3;
+
+    &-ProgressLine {
+        position: relative;
+        width: calc((80% - 92px) / 2);
+        height: 4px;
+        border-radius: 2px;
+        background: #e3e3e3;
+    }
+
+    &-ProgressLineCenter {
+        position: relative;
+        width: 20%;
+        height: 4px;
+        border-radius: 2px;
+        background: #e3e3e3;
+    }
+
+    &-ProgressStage {
+        display: flex;
+        position: relative;
+        line-height: 30px;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+        background: #e3e3e3;
+        color: #adadad;
+        margin: 0 8px;
+    }
+
+    &-IndexProgressStage {
+        position: absolute;
+        font-family: inherit;
+        font-weight: bold;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin: 0;
+    }
+
+    &-ProgressLineActive {
+        position: absolute;
+        left: 0;
+        width: calc((80% - 92px) / 2);
+        height: 4px;
+        border-radius: 2px;
+        background: #a82222;
+        animation: progressBar 1500ms ease-in-out;
+        animation-fill-mode:both; 
+    }
+
+    &-ProgressLineCenterActive  {
+        position: absolute;
+        left: 0;
+        width: 20%;
+        height: 4px;
+        border-radius: 2px;
+        background: #a82222;
+        animation: progressBarCenter 1500ms ease-in-out;
+        animation-fill-mode:both; 
+    }
+
+    &-ProgressStageActive {
+        display: flex;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+        background: #a82222;
+        color: white;
+        margin: 0 8px;
+        animation: progressStage 1500ms ease-in-out;
+    }
+
+    &-IndexProgressStageActive {
+        position: absolute;
+        font-family: inherit;
+        font-weight: bold;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin: 0;
+    }
+
+    &-TitleProgressStage {
+        position: absolute;
+        font-family: inherit;
+        font-weight: bold;
+        top: 34px;
+        text-align: center;
+        width: 300px;
+        color: #adadad;
+        
+    }
+
+    &-TitleProgressStageActive {
+        position: absolute;
+        top: 34px;
+        font-family: inherit;
+        font-weight: bold;
+        text-align: center;
+        width: 300px;
+        color: black;
+    }
+    
+    &-IconProgressStage {
+        color: white;
+        background: transparent;
+        width: 15px;
+        height: 15px;
+    }
+
+    @keyframes progressStage {
+        0% { background: transparent; }
+      100% { background: #a82222; }
+    }
+
+    @keyframes progressBarCenter {
+        0% { width: 0; }
+      100% { width: 100%; }
+    }
+
+    @keyframes progressBar {
+      0% { width: 0; }
+      100% { width: 100%; }
+    }
+}
